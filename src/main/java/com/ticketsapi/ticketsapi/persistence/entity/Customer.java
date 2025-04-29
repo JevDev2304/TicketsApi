@@ -28,6 +28,14 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<Purchase> purchases;
 
+    public List<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
+    }
+
     public String getProfilePicture() {
         return profilePicture;
     }

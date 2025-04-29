@@ -19,8 +19,8 @@ public class Purchase {
     @Column(name = "fecha")
     private LocalDateTime date; // Para una fecha sin timezone
 
-    @Column(name = "medio_pago")
-    private char paymentMethodChar; // Para un solo carácter (CHAR)
+    @Column(name = "metodo_pago")
+    private String paymentMethod; // Para un solo carácter (CHAR)
 
     @Column(name = "ultimos_cuatro_tarjeta")
     private String lastFourDigits;
@@ -31,8 +31,21 @@ public class Purchase {
     @Column(name = "nombre_factura")
     private String nameInBill;
 
-    @Column(name = "metodo_pago")
-    private Character methodChar;
+    public List<PurchaseTickets> getPurchaseTicketsP() {
+        return purchaseTicketsP;
+    }
+
+    public void setPurchaseTicketsP(List<PurchaseTickets> purchaseTicketsP) {
+        this.purchaseTicketsP = purchaseTicketsP;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
@@ -40,6 +53,14 @@ public class Purchase {
 
     @OneToMany(mappedBy = "purchase")
     private List<PurchaseTickets> purchaseTicketsP;
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
 
     public String getCustomerId() {
         return customerId;
@@ -57,13 +78,6 @@ public class Purchase {
         this.purchaseId = purchaseId;
     }
 
-    public char getPaymentMethodChar() {
-        return paymentMethodChar;
-    }
-
-    public void setPaymentMethodChar(char paymentMethodChar) {
-        this.paymentMethodChar = paymentMethodChar;
-    }
 
     public String getLastFourDigits() {
         return lastFourDigits;
@@ -89,13 +103,6 @@ public class Purchase {
         this.nameInBill = nameInBill;
     }
 
-    public Character getMethodChar() {
-        return methodChar;
-    }
-
-    public void setMethodChar(Character methodChar) {
-        this.methodChar = methodChar;
-    }
 
     public LocalDateTime getDate() {
         return date;
