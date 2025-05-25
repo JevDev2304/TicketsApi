@@ -7,8 +7,8 @@ RUN mvn clean package -DskipTests
 # Etapa de empaquetado (Package stage)
 FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY --from=build /app/target/your-app-name-0.0.1-SNAPSHOT.jar app.jar
-# Asegúrate de reemplazar 'your-app-name-0.0.1-SNAPSHOT.jar' con el nombre real de tu JAR.
+COPY --from=build /app/target/myTicket-00.1-SNAPSHOT.jar app.jar
+# ¡Esta línea es la importante, ahora confirmada!
 
 ENV PORT=8080
 EXPOSE 8080
