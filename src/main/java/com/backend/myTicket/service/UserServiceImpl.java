@@ -26,20 +26,20 @@ public class UserServiceImpl  implements  UserService{
     }
 
     @Override
-    public User update(String username, UserRequest userRequest) {
+    public User update(String email, UserRequest userRequest) {
         return null;
     }
 
     @Override
-    public User findById(String username) {
-        return userRepository.findById(username)
+    public User findById(String email) {
+        return userRepository.findById(email)
                 .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "User not found with username: " + username
+                        HttpStatus.NOT_FOUND, "User not found with email: " + email
                 ));
     }
 
     @Override
     public User convertToUser( UserRequest userRequest) {
-        return new User(userRequest.getUsername(), userRequest.getFullName(), userRequest.getPassword(), userRequest.getProfilePicture());
+        return new User(userRequest.getEmail(), userRequest.getFullName(), userRequest.getPassword(), userRequest.getProfilePicture());
     }
 }

@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 @Table(name="users")
 public class User {
     @Id
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
 
     @Column(name = "full_name", nullable = false)
     private String fullName;
@@ -21,12 +21,19 @@ public class User {
 
     public User(){}
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User(String email, String fullName, String password, String profilePicture) {
+        this.email = email;
+        this.fullName = fullName;
+        this.password = password;
+        this.profilePicture = profilePicture;
     }
 
     public String getFullName() {
@@ -53,10 +60,5 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
-    public User(String username, String fullName, String password, String profilePicture) {
-        this.username = username;
-        this.fullName = fullName;
-        this.password = password;
-        this.profilePicture = profilePicture;
-    }
+
 }

@@ -4,9 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class UserRequest {
-    @NotBlank(message = "Username is mandatory")
-    @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters")
-    private String username;
+    @NotBlank(message = "Email is mandatory")
+    @Size(min = 5, max = 100, message = "Email must be between 5 and 100 characters")
+    private String email;
     @NotBlank(message = "FullName is mandatory")
     @Size(min = 2, max = 100, message = "FullName must be between 2 and 100 characters")
     private String fullName;
@@ -16,20 +16,19 @@ public class UserRequest {
     @Size( max = 255, message = "Profile picture must be less than 255 characters")
     private String profilePicture;
 
-    public UserRequest() {}
-    public UserRequest(String username, String fullName, String password, String profilePicture) {
-        this.username = username;
+    public UserRequest(String email, String fullName, String password, String profilePicture) {
+        this.email = email;
         this.fullName = fullName;
         this.password = password;
         this.profilePicture = profilePicture;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFullName() {

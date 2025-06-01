@@ -30,11 +30,11 @@ public class UserRestController {
         User dbUser = userService.save(theUser);
         return dbUser;
     }
-    @Operation(summary = "Get an User", description = "Get an User by username")
+    @Operation(summary = "Get an User", description = "Get an User by email")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{username}")
-    public User getUser(@PathVariable @Size(min = 5, max = 50) String username) {
-        return userService.findById(username);
+    @GetMapping("/{email}")
+    public User getUser(@PathVariable @Size(min = 5, max = 50) String email) {
+        return userService.findById(email);
     }
 
 
