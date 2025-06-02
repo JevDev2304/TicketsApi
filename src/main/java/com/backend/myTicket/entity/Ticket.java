@@ -11,15 +11,15 @@ public class Ticket {
     @Column(name = "id", nullable = false, unique = true, columnDefinition = "char(36)")
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "email", referencedColumnName = "email", nullable = true)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "event_id", referencedColumnName = "id", nullable = false)
     private Event event;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "ticket_type_id", referencedColumnName = "id", nullable = false)
     private TicketType ticketTypeEntity;
 
