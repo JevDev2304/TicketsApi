@@ -27,7 +27,7 @@ public class TicketRestController {
     }
     @Operation(summary = "Pay for a Ticket", description = "Return a Ticket after payment")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/pay")
+    @PutMapping("/pay")
     public Ticket payForTicket(@RequestBody PayTicketRequest ticketRequest) {
         return ticketService.payTicket(ticketRequest);
     }
