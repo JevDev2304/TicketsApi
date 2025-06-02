@@ -23,5 +23,6 @@ public interface TicketRepository extends JpaRepository<Ticket, String> {
 
     @Query(value = "SELECT * FROM tickets  WHERE event_id = :eventId AND ticket_type_id = :ticketTypeId AND email IS NULL LIMIT 1", nativeQuery = true)
     Optional<Ticket> findFirstAvailableTicket(@Param("eventId") Integer eventId, @Param("ticketTypeId") Integer ticketTypeId);
-
+    @Query(value = "SELECT * FROM tickets WHERE email = :email", nativeQuery = true)
+    List<Ticket> findTicketsByUserEmail(@Param("email") String email);
 }

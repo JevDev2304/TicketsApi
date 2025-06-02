@@ -31,5 +31,11 @@ public class TicketRestController {
     public Ticket payForTicket(@RequestBody PayTicketRequest ticketRequest) {
         return ticketService.payTicket(ticketRequest);
     }
+    @Operation(summary = "Get Tickets by User Email", description = "Get all tickets purchased by a user")
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/user/{email}")
+    public java.util.List<Ticket> getTicketsByUserEmail(@PathVariable String email) {
+        return ticketService.findTicketsByUserEmail(email);
+    }
 
 }

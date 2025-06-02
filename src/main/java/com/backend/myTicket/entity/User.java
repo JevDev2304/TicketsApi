@@ -1,5 +1,6 @@
 package com.backend.myTicket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -14,6 +15,7 @@ public class User {
     private String fullName;
 
     @Column(name = "password", nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(name = "profile_picture")

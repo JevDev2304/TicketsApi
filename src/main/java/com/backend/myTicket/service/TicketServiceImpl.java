@@ -44,7 +44,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> findTicketsByUserEmail(String email) {
-        return List.of();
+        return ticketRepository.findTicketsByUserEmail(email);
     }
 
     @Override
