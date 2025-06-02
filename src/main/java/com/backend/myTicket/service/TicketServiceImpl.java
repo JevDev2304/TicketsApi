@@ -6,12 +6,15 @@ import com.backend.myTicket.repository.TicketRepository;
 import com.backend.myTicket.request.PayTicketRequest;
 import com.backend.myTicket.response.EventTicketAvailability;
 import com.backend.myTicket.response.TicketTypeCount;
+import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
@@ -19,10 +22,12 @@ import java.util.List;
 public class TicketServiceImpl implements TicketService {
     private TicketRepository ticketRepository;
     private UserService userService;
+    private EmailService emailService;
     @Autowired
-    public TicketServiceImpl(TicketRepository theTicketRepository, UserService theUserService) {
+    public TicketServiceImpl(TicketRepository theTicketRepository, UserService theUserService, EmailService theEmailService) {
         ticketRepository = theTicketRepository;
         userService = theUserService;
+        emailService = theEmailService;
     }
     @Transactional
     @Override
@@ -39,6 +44,24 @@ public class TicketServiceImpl implements TicketService {
         }
         ticket.setUser(user);
         ticket.setPurchaseDate(new Date());
+        try {
+            emailService.sendHtmlEmailWithEventDetails(ticket.getUser().getEmail(),
+                    ticket.getEvent().getName(),
+                    ticket.getEvent().getLocation(),
+                    ticket.getEvent().getCategory().getName(),
+                    ticket.getEvent().getHost(),
+                    ticket.getEvent().getDate().toString(),
+                    ticket.getTicketTypeEntity().getName(),
+                    ticket.getTicketTypeEntity().getPrice(),
+                    ticket.getPurchaseDate().toString(),
+                    ticket.getId(),
+                    ticket.getEvent().getImage(),
+                    ticket.getUser().getFullName()
+            );
+        } catch (MessagingException | UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        };
+
         return  ticketRepository.save(ticket);
     }
 

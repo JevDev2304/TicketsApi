@@ -13,7 +13,7 @@ public class EventServiceImpl implements  EventService{
     private EventRepository eventRepository;
 
     @Autowired
-    public EventServiceImpl(EventRepository theEventRepository){
+    public EventServiceImpl(EventRepository theEventRepository) {
         eventRepository = theEventRepository;
     }
     @Override
