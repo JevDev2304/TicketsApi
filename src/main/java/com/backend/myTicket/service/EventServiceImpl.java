@@ -30,4 +30,11 @@ public class EventServiceImpl implements  EventService{
     public List<Event> findAvailableEventsByName(String name) {
         return eventRepository.findAvailableEventsByName(name);
     }
+
+    @Override
+    public Event findEventById(Integer eventId) {
+        return eventRepository.findById(eventId).orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Event not found with id: " + eventId
+        ));
+    }
 }

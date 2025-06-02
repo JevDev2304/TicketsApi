@@ -40,5 +40,11 @@ public class EventRestController {
     public List<Event> getAvailableEventsByName(@PathVariable @Size(min = 2, max = 50) String name) {
         return eventService.findAvailableEventsByName(name);
     }
+    @Operation(summary = "Get Event By Id", description = "Get Event by Id")
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{eventId}")
+    public Event getEventById(@PathVariable Integer eventId) {
+        return eventService.findEventById(eventId);
+    }
 
 }

@@ -9,4 +9,5 @@ public interface EventService {
     List<Event> findAvailableEvents();
     List<Event> findAvailableEventsByCategory(String category);
     List<Event> findAvailableEventsByName(String name);
+    Event findEventById(Integer eventId);
 }

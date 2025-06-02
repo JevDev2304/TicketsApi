@@ -19,11 +19,15 @@ public class Event {
     @Column(nullable = false)
     private String location;
 
-    @Column(nullable = false)
-    private String category;
+    @ManyToOne
+    @JoinColumn(name = "category", referencedColumnName = "name", nullable = false)
+    private Category category;
 
     @Column(nullable = false)
     private String host;
+    @Column(nullable = true)
+    private String host_image;
+
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -56,11 +60,11 @@ public class Event {
         this.location = location;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -97,15 +101,24 @@ public class Event {
     }
     public Event() {}
 
-    public Event(Integer id, String name, String location, String category, String host, String description, Date date, String image) {
+    public Event(Integer id, String name, String location, Category category, String host, String host_image, String description, Date date, String image) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.category = category;
         this.host = host;
+        this.host_image = host_image;
         this.description = description;
         this.date = date;
         this.image = image;
+    }
+
+    public String getHost_image() {
+        return host_image;
+    }
+
+    public void setHost_image(String host_image) {
+        this.host_image = host_image;
     }
 
     private String image;
