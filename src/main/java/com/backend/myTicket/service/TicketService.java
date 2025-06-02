@@ -10,5 +10,6 @@ public interface TicketService {
     Ticket payTicket(PayTicketRequest payTicketRequest);
     List<Ticket> findTicketsByUserEmail(String email);
     EventTicketAvailability searchTicketAvailability(Integer eventId);
+    Ticket findTicketById(String ticketId);
 
 }

@@ -62,4 +62,12 @@ public class TicketServiceImpl implements TicketService {
         }
 
     }
+
+    @Override
+    public Ticket findTicketById(String ticketId) {
+        return ticketRepository.findById(ticketId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Ticket not found with id: " + ticketId
+                ));
+    }
 }

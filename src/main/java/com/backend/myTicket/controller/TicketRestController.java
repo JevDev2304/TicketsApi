@@ -37,5 +37,11 @@ public class TicketRestController {
     public java.util.List<Ticket> getTicketsByUserEmail(@PathVariable String email) {
         return ticketService.findTicketsByUserEmail(email);
     }
+    @Operation(summary = "Get Ticket by Id", description = "Get a Ticket by its Id")
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{ticketId}")
+    public Ticket getTicketById(@PathVariable String ticketId) {
+        return ticketService.findTicketById(ticketId);
+    }
 
 }
